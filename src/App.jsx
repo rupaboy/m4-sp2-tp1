@@ -54,6 +54,7 @@ useEffect(()=>{
 }, [ moviesReady ]); //En principio, se ejecuta una única vez.
 
 
+
   return (
     <div>
       <Header
@@ -77,8 +78,8 @@ useEffect(()=>{
             />
           
           
-            
           <motion.div
+            className={ isWatchListOpen ? 'pointer-events-auto' : 'pointer-events-none' }
             initial={{ opacity: 0 }}
             animate={{ opacity: isWatchListOpen? 1: 0 }}
             transition={{ duration: 1 }}
@@ -88,7 +89,6 @@ useEffect(()=>{
                 setIsWatchListOpen={setIsWatchListOpen}
                 customWatchListTailWindClassNames={customWatchListTailWindClassNames} />
           </motion.div>
-          
 
           {/*<Footer />*/}
 

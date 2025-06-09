@@ -11,8 +11,9 @@ const WatchList = ( props ) => {
 
 
   return (
-    <div className={props.customWatchListTailWindClassNames.watchList}>
-      
+    <div
+      className={props.customWatchListTailWindClassNames.watchList}
+      >
       
         < Movies
           customMoviesTailWindClassNames={ props.customWatchListTailWindClassNames } />
