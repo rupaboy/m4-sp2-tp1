@@ -24,6 +24,8 @@ const App = () => {
   //WatchList display/hid
   const [isWatchListOpen, setIsWatchListOpen] = useState(false);
 
+  //Estado para elementos en el WatchList
+  const [watchList, setWatchList] = useState([]);
 
 // PreCarga
 useEffect(()=>{
@@ -57,29 +59,36 @@ useEffect(()=>{
 
   return (
     <div>
-      <Header
+      <Header //Navegación y encabezado
         customHeaderTailWindClassNames={customHeaderTailWindClassNames}
         isWatchListOpen={isWatchListOpen}
         setIsWatchListOpen={setIsWatchListOpen}
         />
       
+      
+      {/* |||||||||||||||||||| MAIN |||||||||||||||||||| */}
       {moviesReady ? ( //Despliega lista de componentes tras la carga de imágenes
-        <motion.div
-          initial={{ opacity: [0, 0, .3, 1] }} //Espera mínima para procesadores gráficos lentos
+        <motion.main
+        
+          initial={{ opacity: [0, 0, .3, 1] }} 
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
+          transition={{ delay: 2, duration: 1 }} //Espera mínima para procesadores gráficos lentos
           >
       
       { /*|||||||||||||||||||| COMPONENTES ||||||||||||||||||||*/}
       
           <Movies
+            setWatchList={setWatchList}
+            watchList={watchList}
             customMoviesTailWindClassNames=
             {customMoviesTailWindClassNames}
             />
           
           
           <motion.div
-            className={ isWatchListOpen ? 'pointer-events-auto' : 'pointer-events-none' }
+            className={ //BugFix para componente absolute con eventos hover (ya no se superponen).
+              isWatchListOpen ? 'pointer-events-auto' : 'pointer-events-none'
+            }
             initial={{ opacity: 0 }}
             animate={{ opacity: isWatchListOpen? 1: 0 }}
             transition={{ duration: 1 }}
@@ -92,11 +101,12 @@ useEffect(()=>{
 
           {/*<Footer />*/}
 
-      {/* Fin de Componentes*/}
-        </motion.div>
+      {/* |||||||||||||||||||| Fin ||||||||||||||||||||*/}
+        </motion.main>
         
 
-      ) : (
+            //LOADER
+      ) : ( 
             <motion.h1
               className={customMoviesTailWindClassNames.loadingMessage}
               initial={{ opacity: 0 }}

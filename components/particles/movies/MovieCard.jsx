@@ -9,7 +9,6 @@ import AddToWatchListButton from '../movies/AddToWatchListButton'
 
 const MovieCard = ( props ) => {
 
-
   const [isHovered, setIsHovered] = useState(false);
 
   return (

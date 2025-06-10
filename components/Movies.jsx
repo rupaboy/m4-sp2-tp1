@@ -10,6 +10,8 @@ const Movies = ( props ) => {
       {movies.map(( movie )=>(
 
             < MovieCard
+              watchList={props.watchList}
+              setWatchList={props.setWatchList}
               customMoviesTailWindClassNames={props.customMoviesTailWindClassNames}
               key={movie.id}
               moviePoster={movie.poster}

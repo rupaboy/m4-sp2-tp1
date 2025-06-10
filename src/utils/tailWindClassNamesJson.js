@@ -35,16 +35,16 @@ const customMoviesTailWindClassNames = {
     h-80 content-end w-screen text-center font-alfa text-white text-lg uppercase`,
   movies: `${commonMoviesTailWindClassNames}
     snap-y scroll-snap-mandatory
-    bg-gradient-to-tl pt-6 from-zinc-400/60 to-zinc-800/80 object-fixed pb-12 flex flex-wrap gap-6 justify-center px-4`,
+    bg-gradient-to-tl px-4 pb-12 pt-6 from-zinc-400/60 to-zinc-800/80 object-fixed flex flex-wrap gap-6 justify-center`,
   movieCard: `
     snap h-120 grid rounded-2xl max-w-80`, //Fondo gestionado por {motion} en MovieCard.
   moviePoster: `${commonMoviesTailWindClassNames}
     h-100 w-70 mx-auto rounded-t-2xl overflow-hidden object-cover object-center`,
   movieTitle: `${commonMoviesTailWindClassNames}
-    h-10 w-66 text-md mx-auto text-center font-alfa text-stone-200/90 uppercase pt-1 truncate overflow-hidden text-ellipsis whitespace-nowrap`,
+    w-66 text-md mx-auto text-center font-alfa text-stone-200/90 uppercase truncate overflow-hidden text-ellipsis whitespace-nowrap`,
   //El título admite hasta 22 caracteres aprox. Luego recorta en puntos suspensivos (elípsis)
   addToWatchListButton: `${commonMoviesTailWindClassNames}
-    rounded-sm text-xs bg-orange-400 px-4 h-6 mx-auto my-2 cursor-pointer`,
+    rounded-sm mb-3 text-xs bg-orange-400 px-4 pb-4 h-6 mx-auto cursor-pointer`,
 }
 
 //WatchList
@@ -54,16 +54,16 @@ const commonWatchListTailWindClassNames = `${commonAppTailWindClassNames}
 //Custom for WatchList
 const customWatchListTailWindClassNames = {
   watchList: `${commonWatchListTailWindClassNames}
-    absolute fixed left-0 content-top top-10 flex h-115 w-screen bg-gradient-to-b from-red-700 to-red-950 object-fixed py-8 flex flex-wrap gap-6 px-4`,
+    absolute fixed left-0 content-top top-10 flex h-110 w-screen bg-gradient-to-b from-red-700 to-red-950 object-fixed py-8 flex flex-wrap gap-6 px-4`,
   movies: `${commonWatchListTailWindClassNames}
     snap-x scroll-snap-mandatory select-none overflow-x-scroll whitespace-nowrap scrollbar
     object-fixed flex gap-6 px-4`,
   movieCard: `
-    h-90 min-w-50 grid rounded-2xl w-full mb-4`, //Fondo gestionado por {motion} en MovieCard.
+    h-85 min-w-50 grid rounded-2xl w-full mb-4`, //Fondo gestionado por {motion} en MovieCard.
   moviePoster: `${commonWatchListTailWindClassNames}
     h-70 w-full rounded-t-2xl overflow-hidden object-cover object-center`,
   movieTitle: `${commonWatchListTailWindClassNames}
-    text-xs w-full px-5 text-center font-alfa text-stone-200/90 uppercase truncate overflow-hidden text-ellipsis whitespace-nowrap`,
+    text-xs pt-2 w-full px-5 text-center font-alfa text-stone-200/90 uppercase truncate overflow-hidden text-ellipsis whitespace-nowrap`,
   //El título admite hasta 22 caracteres aprox. Luego recorta en puntos suspensivos (elípsis)
   addToWatchListButton: `${commonWatchListTailWindClassNames}
     rounded-sm text-xs bg-orange-400 px-4 h-6 mx-auto mb-2 cursor-pointer`,
