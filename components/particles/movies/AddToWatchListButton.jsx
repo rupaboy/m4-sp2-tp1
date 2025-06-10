@@ -6,7 +6,6 @@ const AddToWatchListButton = () => {
   return (
     <>
       Añadir a Favoritos
-    
     </>
   )
 }

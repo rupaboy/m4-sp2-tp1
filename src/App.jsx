@@ -18,14 +18,51 @@ import Footer from '../components/footer/Footer'
 
 const App = () => {
   
-  //Estado de precarga src de imágenes.
-  const [moviesReady, setMoviesReady] = useState(false);
-  
+    // WATCHLIST |||||||||||||||||||||||||||||||||||||||||||||||||||
   //WatchList display/hid
   const [isWatchListOpen, setIsWatchListOpen] = useState(false);
 
   //Estado para elementos en el WatchList
-  const [watchList, setWatchList] = useState([]);
+  const [watchList, setWatchList] = useState(
+    [localStorage.getItem(`watchList`)]
+  );
+
+  //Función auxiliar para comparar ids en movies y en localStorage
+  const isAddedAlreadyComparisson = ( id ) => {
+    return watchList.some(( movie ) => movie.id === id );
+  };
+  
+  //Estado para determinar si una película ya está en el watchList, o no.
+  const [isAddedAlready, setIsAddedAlready ] = useState(false);
+
+  //Función: ¿La película se puede agregar al WatchList o no?
+  const handleAddToWatchList = ( id ) => {
+    if (!isAddedAlreadyComparisson( id )) {
+
+      const updatedList = [ ...watchList, { id } ];
+      setWatchList( [ updatedList ]);
+      localStorage.setItem(`watchList`, [ updatedList ]);
+    }
+  };
+
+  //Función: ¿El botón Agregar A WatchList se renderiza, o no?
+  const handleHoverWatchListButton = ( id ) => {
+    if (!isAddedAlreadyComparisson( id )) {
+      setIsAddedAlready( true )
+    }
+  };
+
+  useEffect(()=>{
+    watchList === null
+    ? setWatchList([])
+    : setWatchList( [watchList] )
+
+  }, [])
+
+  // MOVIES |||||||||||||||||||||||||||||||||||||||||||||||||||
+  
+  //Estado de precarga src de imágenes.
+  const [moviesReady, setMoviesReady] = useState(false);
 
 // PreCarga
 useEffect(()=>{
@@ -78,8 +115,17 @@ useEffect(()=>{
       { /*|||||||||||||||||||| COMPONENTES ||||||||||||||||||||*/}
       
           <Movies
-            setWatchList={setWatchList}
+            movies={movies}
+
             watchList={watchList}
+            setWatchList={setWatchList}
+            
+            /*isAddedAlready={isAddedAlready}
+            setIsAddedAlready={setIsAddedAlready}*/
+            
+            handleAddToWatchList={handleAddToWatchList}
+            handleHoverWatchListButton={handleHoverWatchListButton}
+            
             customMoviesTailWindClassNames=
             {customMoviesTailWindClassNames}
             />
@@ -94,6 +140,7 @@ useEffect(()=>{
             transition={{ duration: 1 }}
             >
               <WatchList
+                watchList={watchList}
                 isWatchListOpen={isWatchListOpen}
                 setIsWatchListOpen={setIsWatchListOpen}
                 customWatchListTailWindClassNames={customWatchListTailWindClassNames} />

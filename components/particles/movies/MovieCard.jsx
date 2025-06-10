@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import MoviePoster from '../movies/MoviePoster'
 import MovieTitle from '../movies/MovieTitle'
 import AddToWatchListButton from '../movies/AddToWatchListButton'
+import RemoveFromWatchListButton from '../watchlist/RemoveFromWatchListButton'
 
 
 
@@ -26,16 +27,25 @@ const MovieCard = ( props ) => {
         < MoviePoster poster={props.moviePoster} title={props.movieTitle} customMoviesTailWindClassNames={props.customMoviesTailWindClassNames.moviePoster} />
         < MovieTitle title={props.movieTitle} customMoviesTailWindClassNames={props.customMoviesTailWindClassNames.movieTitle} />
         
+        
         <motion.div
         className={ props.customMoviesTailWindClassNames.addToWatchListButton }
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: .3 }}
         
-        >
-          < AddToWatchListButton />
+        > 
+        { !props.isAddedAlready &&  //Verifica si se muestra Agregar o Remover
+          < AddToWatchListButton onClick = { ()=> props.handleAddToWatchList( props.key )} />
+        }
+
+        { props.isAddedAlready &&  
+          < RemoveFromWatchListButton />
+        }
+
          
           </motion.div>
+        
         
       </motion.div>
     </>

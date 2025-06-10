@@ -4,11 +4,10 @@ import Movies from './Movies'
 import MovieCard from '../components/particles/movies/MovieCard'
 import RemoveFromWatchListButton from '../components/particles/watchlist/RemoveFromWatchListButton'
 
-import { movies } from '../src/utils/moviesJson'
-
 
 const WatchList = ( props ) => {
 
+  console.log(props.watchList)
 
   return (
     <div
@@ -16,8 +15,11 @@ const WatchList = ( props ) => {
       >
       
         < Movies
-          customMoviesTailWindClassNames={ props.customWatchListTailWindClassNames } />
-        {/*< RemoveFromWatchListButton />*/}
+          customMoviesTailWindClassNames={ props.customWatchListTailWindClassNames }
+          //handleAddToWatchList = {props.handleAddToWatchList}
+          movies = {props.watchList}
+          />
+          
       
     </div>
   )
