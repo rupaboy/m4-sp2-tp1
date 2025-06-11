@@ -1,8 +1,9 @@
-import React from 'react'
-
 const RemoveFromWatchListButton = ( props ) => {
+  
   return (
-    <div className={props.tailWindClassName}>RemoveFromWatchListButton</div>
+    <div onClick={ ()=> props.handleRemoveFromWatchList(props.movie) }>
+      Quitar de Favoritos
+    </div>
   )
 }
 

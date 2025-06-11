@@ -1,16 +1,16 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 import MoviePoster from '../movies/MoviePoster'
 import MovieTitle from '../movies/MovieTitle'
+
 import AddToWatchListButton from '../movies/AddToWatchListButton'
 import RemoveFromWatchListButton from '../watchlist/RemoveFromWatchListButton'
 
 
-
 const MovieCard = ( props ) => {
 
-  const [isHovered, setIsHovered] = useState(false);
+const [isHovered, setIsHovered] = useState(false);
 
   return (
     <>
@@ -23,30 +23,25 @@ const MovieCard = ( props ) => {
       transition={{ duration: .6 }}
       whileHover={{ backgroundColor: '#445C', transition: 2 }}
       >
-        
+
         < MoviePoster poster={props.moviePoster} title={props.movieTitle} customMoviesTailWindClassNames={props.customMoviesTailWindClassNames.moviePoster} />
         < MovieTitle title={props.movieTitle} customMoviesTailWindClassNames={props.customMoviesTailWindClassNames.movieTitle} />
         
+            <motion.div
+              className={ props.customMoviesTailWindClassNames.addToWatchListButton }
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: .3 }}  
+              > 
         
-        <motion.div
-        className={ props.customMoviesTailWindClassNames.addToWatchListButton }
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: .3 }}
+              {props.isAddedAlreadyComparisson(props.movie) ? (
+              <RemoveFromWatchListButton handleRemoveFromWatchList={props.handleRemoveFromWatchList} movie={props.movie} />
+              ) : (
+              <AddToWatchListButton handleAddToWatchList={props.handleAddToWatchList} movie={props.movie} />
+              )}
         
-        > 
-        { !props.isAddedAlready &&  //Verifica si se muestra Agregar o Remover
-          < AddToWatchListButton onClick = { ()=> props.handleAddToWatchList( props.key )} />
-        }
+            </motion.div>
 
-        { props.isAddedAlready &&  
-          < RemoveFromWatchListButton />
-        }
-
-         
-          </motion.div>
-        
-        
       </motion.div>
     </>
   )

@@ -1,5 +1,6 @@
 import MovieCard from '../components/particles/movies/MovieCard'
 
+
 const Movies = ( props ) => {
 
   return (
@@ -8,18 +9,20 @@ const Movies = ( props ) => {
       {props.movies.map(( movie )=>(
 
             < MovieCard
+              movie={movie}
               setWatchList={props.setWatchList}
-              isAddedAlready={props.isAddedAlready}
               handleAddToWatchList = {props.handleAddToWatchList}
-              handleHoverWatchListButton={props.handleHoverWatchListButton}
+              handleRemoveFromWatchList={props.handleRemoveFromWatchList}
               customMoviesTailWindClassNames={props.customMoviesTailWindClassNames}
               key={movie.id}
               moviePoster={movie.poster}
               movieTitle={movie.title}
-            />
-      ))}
-    </div>
-  )
+              isAddedAlreadyComparisson={props.isAddedAlreadyComparisson}
+              />
+
+          ))}
+      </div>
+    )
 }
 
 export default Movies

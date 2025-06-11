@@ -23,44 +23,39 @@ const App = () => {
   const [isWatchListOpen, setIsWatchListOpen] = useState(false);
 
   //Estado para elementos en el WatchList
-  const [watchList, setWatchList] = useState(
-    [localStorage.getItem(`watchList`)]
-  );
+  const [watchList, setWatchList] = useState([]);
 
   //Función auxiliar para comparar ids en movies y en localStorage
-  const isAddedAlreadyComparisson = ( id ) => {
-    return watchList.some(( movie ) => movie.id === id );
+  const isAddedAlreadyComparisson = ( movie ) => {
+    return watchList.some((watchList) => movie.id === watchList.id );
   };
-  
-  //Estado para determinar si una película ya está en el watchList, o no.
-  const [isAddedAlready, setIsAddedAlready ] = useState(false);
 
   //Función: ¿La película se puede agregar al WatchList o no?
-  const handleAddToWatchList = ( id ) => {
-    if (!isAddedAlreadyComparisson( id )) {
+  const handleAddToWatchList = ( movie ) => {
+    if (!isAddedAlreadyComparisson( movie )) {
 
-      const updatedList = [ ...watchList, { id } ];
-      setWatchList( [ updatedList ]);
-      localStorage.setItem(`watchList`, [ updatedList ]);
+      const updatedList = [ ...watchList, movie ];
+      setWatchList( updatedList );
+      localStorage.setItem(`watchList`, [JSON.stringify(updatedList)] );
     }
   };
 
-  //Función: ¿El botón Agregar A WatchList se renderiza, o no?
-  const handleHoverWatchListButton = ( id ) => {
-    if (!isAddedAlreadyComparisson( id )) {
-      setIsAddedAlready( true )
+  //Función: ¿La película se puede quitar de la WatchList o no?
+  const handleRemoveFromWatchList = ( movie ) => {
+    if (isAddedAlreadyComparisson( movie )) {
+      const updatedList = watchList.filter((item) => item.id !== movie.id);
+      setWatchList(updatedList);
+      localStorage.setItem(`watchList`, [JSON.stringify(updatedList)] );
     }
   };
 
   useEffect(()=>{
-    watchList === null
-    ? setWatchList([])
-    : setWatchList( [watchList] )
-
+    const storedWatchList = localStorage.getItem(`watchList`)
+    storedWatchList !== null ? setWatchList(JSON.parse(storedWatchList)) : []
   }, [])
 
   // MOVIES |||||||||||||||||||||||||||||||||||||||||||||||||||
-  
+
   //Estado de precarga src de imágenes.
   const [moviesReady, setMoviesReady] = useState(false);
 
@@ -120,11 +115,10 @@ useEffect(()=>{
             watchList={watchList}
             setWatchList={setWatchList}
             
-            /*isAddedAlready={isAddedAlready}
-            setIsAddedAlready={setIsAddedAlready}*/
-            
             handleAddToWatchList={handleAddToWatchList}
-            handleHoverWatchListButton={handleHoverWatchListButton}
+            handleRemoveFromWatchList={handleRemoveFromWatchList}
+
+            isAddedAlreadyComparisson={isAddedAlreadyComparisson}
             
             customMoviesTailWindClassNames=
             {customMoviesTailWindClassNames}
@@ -143,6 +137,8 @@ useEffect(()=>{
                 watchList={watchList}
                 isWatchListOpen={isWatchListOpen}
                 setIsWatchListOpen={setIsWatchListOpen}
+                isAddedAlreadyComparisson={isAddedAlreadyComparisson}
+                handleRemoveFromWatchList={handleRemoveFromWatchList}
                 customWatchListTailWindClassNames={customWatchListTailWindClassNames} />
           </motion.div>
 

@@ -7,20 +7,16 @@ import RemoveFromWatchListButton from '../components/particles/watchlist/RemoveF
 
 const WatchList = ( props ) => {
 
-  console.log(props.watchList)
-
   return (
     <div
       className={props.customWatchListTailWindClassNames.watchList}
       >
-      
         < Movies
           customMoviesTailWindClassNames={ props.customWatchListTailWindClassNames }
-          //handleAddToWatchList = {props.handleAddToWatchList}
+          isAddedAlreadyComparisson={props.isAddedAlreadyComparisson}
           movies = {props.watchList}
+          handleRemoveFromWatchList={props.handleRemoveFromWatchList}
           />
-          
-      
     </div>
   )
 }
