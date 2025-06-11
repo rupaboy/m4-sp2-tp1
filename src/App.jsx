@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-import { movies } from './utils/moviesJson'
+import movies from './utils/moviesJson'
 
 import {  
     customHeaderTailWindClassNames,

@@ -15,14 +15,14 @@ const [isHovered, setIsHovered] = useState(false);
   return (
     <>
       <motion.div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={props.customMoviesTailWindClassNames.movieCard}
-      initial={{ opacity: 0, backgroundColor: "#2230" }}
-      animate={{ opacity: 1, backgroundColor: "#2238" }}
-      transition={{ duration: .6 }}
-      whileHover={{ backgroundColor: '#445C', transition: 2 }}
-      >
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={props.customMoviesTailWindClassNames.movieCard}
+        initial={{ opacity: 0, backgroundColor: "#2230" }}
+        animate={{ opacity: 1, backgroundColor: "#2238" }}
+        transition={{ duration: .6 }}
+        whileHover={{ backgroundColor: '#445C', transition: 2 }}
+        >
 
         < MoviePoster poster={props.moviePoster} title={props.movieTitle} customMoviesTailWindClassNames={props.customMoviesTailWindClassNames.moviePoster} />
         < MovieTitle title={props.movieTitle} customMoviesTailWindClassNames={props.customMoviesTailWindClassNames.movieTitle} />
