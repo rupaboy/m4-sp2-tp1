@@ -1,3 +1,4 @@
+import RemoveFromWatchListButton from "../../components/particles/watchlist/RemoveFromWatchListButton"
 import WatchList from "../../components/WatchList"
 
 //App
@@ -44,7 +45,9 @@ const customMoviesTailWindClassNames = {
     w-66 text-md mx-auto text-center font-alfa text-stone-200/90 uppercase truncate overflow-hidden text-ellipsis whitespace-nowrap`,
   //El título admite hasta 22 caracteres aprox. Luego recorta en puntos suspensivos (elípsis)
   addToWatchListButton: `${commonMoviesTailWindClassNames}
-    rounded-sm mb-3 text-xs bg-orange-400 px-4 pb-4 h-6 mx-auto cursor-pointer`,
+    rounded-sm text-xs bg-orange-400 px-4 h-6 mx-auto mb-2 cursor-pointer`,
+  removeFromWatchListButton: `${commonMoviesTailWindClassNames}
+    rounded-sm text-xs bg-red-900 text-white px-4 h-6 mx-auto mb-2 cursor-pointer`,
 }
 
 //WatchList
@@ -54,19 +57,23 @@ const commonWatchListTailWindClassNames = `${commonAppTailWindClassNames}
 //Custom for WatchList
 const customWatchListTailWindClassNames = {
   watchList: `${commonWatchListTailWindClassNames}
-    absolute fixed left-0 content-top top-10 flex h-110 w-screen bg-gradient-to-b from-red-700 to-red-950 object-fixed py-8 flex flex-wrap gap-6 px-4`,
+    absolute fixed left-0 content-top top-10 flex h-114 w-full bg-gradient-to-b from-red-700 to-red-950 object-fixed py-8 flex flex-wrap gap-6 px-4`,
   movies: `${commonWatchListTailWindClassNames}
     snap-x scroll-snap-mandatory select-none overflow-x-scroll whitespace-nowrap scrollbar
-    object-fixed flex gap-6 px-4`,
+    flex gap-6 px-4`,
   movieCard: `
-    h-85 min-w-50 grid rounded-2xl w-full mb-4`, //Fondo gestionado por {motion} en MovieCard.
-  moviePoster: `${commonWatchListTailWindClassNames}
-    h-70 w-full rounded-t-2xl overflow-hidden object-cover object-center`,
+    min-w-50 w-50 h-90 grid rounded-2xl p-1`, //Fondo gestionado por {motion} en MovieCard.
+  moviePoster: `
+    rounded-t-xl h-70 w-50 overflow-hidden object-cover`,
   movieTitle: `${commonWatchListTailWindClassNames}
-    text-xs pt-2 w-full px-5 text-center font-alfa text-stone-200/90 uppercase truncate overflow-hidden text-ellipsis whitespace-nowrap`,
+    text-xs py-2 w-full px-5 text-center font-alfa text-stone-200/90 uppercase truncate overflow-hidden text-ellipsis whitespace-nowrap`,
   //El título admite hasta 22 caracteres aprox. Luego recorta en puntos suspensivos (elípsis)
+  emptyWatchList: `${commonWatchListTailWindClassNames}
+    grid h-full text-white content-center text-center mx-auto`,
   addToWatchListButton: `${commonWatchListTailWindClassNames}
     rounded-sm text-xs bg-orange-400 px-4 h-6 mx-auto mb-2 cursor-pointer`,
+  removeFromWatchListButton: `${commonWatchListTailWindClassNames}
+    rounded-sm text-xs bg-red-900 text-white px-4 h-6 mx-auto mb-2 cursor-pointer`,
 }
 
 export {

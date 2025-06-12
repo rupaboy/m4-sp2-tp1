@@ -1,11 +1,13 @@
 import MovieCard from '../components/particles/movies/MovieCard'
 
 
+
 const Movies = ( props ) => {
 
   return (
  
-     <div className={props.customMoviesTailWindClassNames.movies}>
+     <div
+     className={props.customMoviesTailWindClassNames.movies}>
       {props.movies.map(( movie )=>(
 
             < MovieCard

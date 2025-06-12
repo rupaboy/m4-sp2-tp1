@@ -13,7 +13,6 @@ import {
 import Header from '../components/Header'
 import Movies from '../components/Movies'
 import WatchList from '../components/WatchList'
-import Footer from '../components/footer/Footer'
 
 
 const App = () => {

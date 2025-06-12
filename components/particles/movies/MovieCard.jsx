@@ -20,7 +20,7 @@ const [isHovered, setIsHovered] = useState(false);
         className={props.customMoviesTailWindClassNames.movieCard}
         initial={{ opacity: 0, backgroundColor: "#2230" }}
         animate={{ opacity: 1, backgroundColor: "#2238" }}
-        transition={{ duration: .6 }}
+        transition={{ duration: .3 }}
         whileHover={{ backgroundColor: '#445C', transition: 2 }}
         >
 
@@ -28,16 +28,20 @@ const [isHovered, setIsHovered] = useState(false);
         < MovieTitle title={props.movieTitle} customMoviesTailWindClassNames={props.customMoviesTailWindClassNames.movieTitle} />
         
             <motion.div
-              className={ props.customMoviesTailWindClassNames.addToWatchListButton }
+              className={ !props.isAddedAlreadyComparisson(props.movie) ? props.customMoviesTailWindClassNames.addToWatchListButton : props.customMoviesTailWindClassNames.removeFromWatchListButton }
               initial={{ opacity: 0 }}
               animate={{ opacity: isHovered ? 1 : 0 }}
-              transition={{ duration: .3 }}  
+              transition={{ duration: .1 }}
               > 
         
               {props.isAddedAlreadyComparisson(props.movie) ? (
-              <RemoveFromWatchListButton handleRemoveFromWatchList={props.handleRemoveFromWatchList} movie={props.movie} />
+              <RemoveFromWatchListButton
+                handleRemoveFromWatchList={props.handleRemoveFromWatchList}
+                movie={props.movie} />
               ) : (
-              <AddToWatchListButton handleAddToWatchList={props.handleAddToWatchList} movie={props.movie} />
+              <AddToWatchListButton
+                handleAddToWatchList={props.handleAddToWatchList}
+                movie={props.movie} />
               )}
         
             </motion.div>
